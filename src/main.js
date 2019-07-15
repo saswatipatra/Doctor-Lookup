@@ -2,35 +2,73 @@ import './styles.css';
 import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { MusicSearch } from './backend-code';
+import { DoctorSearch} from './backend-code';
+import { getApi} from './promiseFunction';
 
 $(document).ready(function() {
-  $('form').submit(function(event) {
+  $('.SearchByName').on('click', function(){
+  let username= $('#username').val();
+  $('.searchButton').hide();
+  $("#name").text(username);
+  $('#SearchByName').show();
+});
+
+$('.SearchByQuery').on('click', function(){
+  let username= $('#username').val();
+  $('.searchButton').hide();
+  $("#name").text(username);
+  $('#SearchByQuery').show();
+});
+$('.backButton').on('click', function(){
+  $('.searchButton').show();
+  $('#SearchByQuery').hide();
+  $('#SearchByName').hide();
+});
+
+  $('#SearchByName').submit(function(event) {
     event.preventDefault();
-    $('.showArtistAlbums').empty();
+    $('#doctorDetails').empty();
 
-    let inputArtist = $('#inputArtist').val();
-    $('#inputArtist').val("");
+    let firstName = $('#firstName').val();
+    let lastName = $('#lastName').val();
+    let doctorLocation = $('#doctorLocation').val();
+    $('#firstName').val("");
+      $('#lastName').val("");
+        $('#doctorLocation').val("");
 
-    let musicSearch = new MusicSearch();
-    let promise = musicSearch.getArtistId(inputArtist);
+    let doctorSearch = new DoctorSearch();
+    let promise = doctorSearch.getDoctorByName(firstName, lastName, doctorLocation);
 
-  promise
-    .then(function(result) {
-      let output = JSON.parse(result);
-      let artistId = output.message.body.artist_list[0].artist.artist_id;
-      // $('.showArtistId').text(`The ID number of ${inputArtist} is ${artistId}.`);
-      return musicSearch.getArtistAlbums(artistId);
-    })
-    .then(function(newResult){
-      let output = JSON.parse(newResult);
-      let albumList = output.message.body.album_list;
-      for (var i = 0; i < albumList.length; i++) {
-        $('.showArtistAlbums').append(`${albumList[i].album.album_name}<br>`)
-      }
-    })
-    .catch(function(error) {
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
-    });
-  });
+   promise.then(function(response) {
+      let body = JSON.parse(response);
+      getApi(body);
+  })
+  .catch(function(error) {
+       $('.errors').text(`There was an error processing your request: ${error.message}`);
+     });
+     $('form')[0].reset();
+});
+
+$('#SearchByQuery').submit(function(event) {
+  event.preventDefault();
+  $('#doctorDetails').empty();
+
+  let query = $('#query').val();
+  let doctorLocation = $('#doctorLocation1').val();
+  $('#query').val("");
+    $('#lastName').val("");
+      $('#doctorLocation1').val("");
+
+  let doctorSearch = new DoctorSearch();
+  let promise = doctorSearch.getDoctorByQuery(query, doctorLocation);
+
+ promise.then(function(response) {
+    let body = JSON.parse(response);
+    getApi(body);
+})
+.catch(function(error) {
+     $('.errors').text(`There was an error processing your request: ${error.message}`);
+   });
+});
+$('form')[1].reset();
 });

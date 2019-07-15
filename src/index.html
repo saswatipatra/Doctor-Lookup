@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Music Search</title>
+    <title>Doctor List</title>
   </head>
-  <body>
+  <body class="backgroung">
     <div class="container">
-      <h1>Music Search</h1>
-      <form>
-        <label for="inputArtist">Enter an artist:</label>
-        <input id="inputArtist" type="text">
-        <button type="submit">Get Albums!</button>
+      <div class="searchButton">
+        <h1>Search-My-Doctor Welcomes you...</h1><br><br>
+        <h3>We will be glad to help you</h3><br>
+        <label for="username">Enter your Name</label><br>
+        <input type="text" id="username"><br>
+        <br><br>
+        <h3>Kindly select your particular search by clicking that button :</h3>
+        <br><br>
+        <button type="button" class="SearchByName">Search by Doctor Name</button>
+        <button type="button" class="SearchByQuery">Search doctor as per your medical issue</button>
+        <br>
+      </div>
+
+      <form id="SearchByName">
+        <h2>Hello <em id="name"></em>, We are here to help you to search a doctor as per your requirement... </h2>
+        <h3>Kindly fill the bellow form:</h3>
+        <div class="form-group">
+        <label for="firstName">Enter Doctor's first name:</label>
+        <input id="firstName" type="text" placeholder="eg. William" >
+        </div>
+        <div class="form-group">
+        <label for="lastName">Enter Doctor's last name:</label>
+        <input id="lastName" type="text" placeholder="eg. Thompson">
+        </div>
+        <div class="form-group">
+        <label for="doctorLocation">Enter the doctor location you are searching for:</label>
+        <input id="doctorLocation" type="text" placeholder="State name eg WA">
+        </div>
+        <button id ="searchDoctorByName" type="submit">Search Doctor!</button>
+        <button class ="backButton" >Back!</button>
+      </form>
+      <form id="SearchByQuery">
+        <h2>Hello <em id="name"></em>, We are here to help you to search a doctor as per your requirement...Kindly fill the bellow form </h2>
+        <h3>:</h3>
+        <div class="form-group">
+        <label for="query">Enter your health issue:</label>
+        <input id="query" type="text" placeholder="eg. Tooth ache">
+        </div>
+        <div class="form-group">
+        <label for="doctorLocation1">Enter the doctor location you are searching for:</label>
+        <input id="doctorLocation1" type="text" placeholder="State name eg WA">
+        </div>
+        <button id ="searchDoctorByQuery" type="submit">Search Doctor!</button>
+        <button class ="backButton" >Back!</button>
       </form>
       <div class="showErrors"></div>
-      <div class="showArtistId"></div>
-      <div class="showArtistAlbums"></div>
+      <p id="doctorDetails"></p>
+
+
     </div>
   </body>
 </html>

@@ -1,10 +1,10 @@
 import 'jquery';
 
-export class MusicSearch {
-  getArtistId(artistName) {
+export class DoctorSearch {
+  getDoctorByName(firstName, lastName, doctorLocation) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/artist.search?q_artist=${artistName}&apikey=${process.env.API_KEY}`;
+      let url = `https://api.betterdoctor.com/2016-03-01/doctors?first_name=${firstName}&last_name=${lastName} &location=${doctorLocation}&user_key=202838dd5fcd4902f8cc192df156e601`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -17,19 +17,19 @@ export class MusicSearch {
     });
   }
 
-  getArtistAlbums(artistId) {
-    return new Promise(function(resolve, reject) {
-      let request = new XMLHttpRequest();
-      let url = `https://cors-anywhere.herokuapp.com/api.musixmatch.com/ws/1.1/artist.albums.get?artist_id=${artistId}&g_album_name=1&s_release_date=desc&apikey=${process.env.API_KEY}`;
-      request.onload = function() {
-        if (this.status === 200) {
-          resolve(request.response);
-        } else {
-          reject(Error(request.statusText));
+  getDoctorByQuery(query, doctorLocation) {
+      return new Promise(function(resolve, reject) {
+        let request = new XMLHttpRequest();
+        let url = `https://cors-anywhere.herokuapp.com/https://api.betterdoctor.com/2016-03-01/doctors?skip=0&limit=100&query=${query} &location=${doctorLocation}&user_key=202838dd5fcd4902f8cc192df156e601`;
+        request.onload = function() {
+          if (this.status === 200) {
+            resolve(request.response);
+          } else {
+            reject(Error(request.statusText));
+          }
         }
-      }
-      request.open("GET", url, true);
-      request.send();
-    });
-  }
+        request.open("GET", url, true);
+        request.send();
+      });
+    }
 }
