@@ -1,6 +1,6 @@
 # Doctor Lookup
 
-#### _A web site for searching for music - July 14 , 2019_
+#### _A web site for searching for doctors - July 14 , 2019_
 
 #### _By **Saswati Patra**_
 
