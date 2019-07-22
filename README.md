@@ -1,6 +1,6 @@
-# Music Search
+# Doctor Lookup
 
-#### _A web site for searching for music - July 14 , 2019_
+#### _A web site for searching for doctors - July 14 , 2019_
 
 #### _By **Saswati Patra**_
 
@@ -11,25 +11,8 @@ On this web site, a user may enter a medical issue and receive a list of doctors
 ### Specs
 | Spec | Input | Output |
 | :-------------     | :------------- | :------------- |
-| **Search by medical issue to receive a list of doctors in the WA area that fit the search query** | query: stomach ache | Name: Klaus Mergener
-specialties: gastroenterologist
-City: Puyallup
-state: WA
-street: 1703 S Meridian
-zip: 98371
-Phone no: 2538413933
-New Patients:true
-website: http://www.digestivehlth.com/
-... |
-| **Search by name to receive a list of doctors in the WA area that fit the search query** | First Name: William, Last Name: Thompson | Name: William Thompson
-specialties: general-dentist
-City: Tukwila
-state: WA
-street: 6840 Fort Dent Way
-zip: 98188
-Phone no: 2062424166
-New Patients:true
-... |
+| **Search by medical issue to receive a list of doctors in the WA area that fit the search query** | query: stomach ache | Name: Klaus Mergener... |
+| **Search by name to receive a list of doctors in the WA area that fit the search query** | First Name: William, Last Name: Thompson | Name: William Thompson,specialties: general-dentist... |
 
 ## Setup/Installation Requirements
 *_Clone this repository:https://github.com/saswatipatra/Doctor-Lookup_*
